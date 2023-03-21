@@ -1,0 +1,1 @@
+export { pokeAPi} from './pokeApi';

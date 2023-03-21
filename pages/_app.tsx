@@ -9,8 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   <NextUIProvider theme={darkTheme}>
     <Component {...pageProps} />
   </NextUIProvider>
-  )
-  
+  )  
 }
 
 export default MyApp
