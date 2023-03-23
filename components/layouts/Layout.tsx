@@ -11,9 +11,7 @@ interface Props {
 
 
 export const Layout: FC<Props> = ({ children, title = 'Pokemon app' }) => {
-    const origin = (typeof window!== 'undefined')? window.location.origin : '';
-    
-    
+    const origin = (typeof window!== 'undefined')? window.location.origin : '';        
     return (
         <>
             <Head>
