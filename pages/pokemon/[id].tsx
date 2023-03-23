@@ -6,8 +6,9 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Layout } from "../../components/layouts";
 import { pokeAPi } from '../../api/pokeApi';
 import { Pokemon } from "../../interfaces";
-import { localFavorites } from "../../utils";
+import { PokemonInfo, localFavorites } from "../../utils";
 
+import confetti from 'canvas-confetti';
 
 
 interface Props {
@@ -17,15 +18,24 @@ interface Props {
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
   const [isInFavorites, setIsInFavorites] = useState(localFavorites.isPokemonFavorite(pokemon.id));
-
-  const onToogleFavorite =  () => {    
+  const onToogleFavorite =  () => {   
+     
     localFavorites.toogleFavorites(pokemon.id);
     setIsInFavorites(!isInFavorites);
+    if (isInFavorites) return;
+    confetti({
+      zIndex:999,
+      particleCount: 100,
+      spread: 160,
+      angle:-100,
+      origin:{
+        x:1,
+        y:0
+      }      
+    })          
   }
 
-  
-  
-  
+
   
   return (
     <Layout title={pokemon.name}>
@@ -51,7 +61,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
             <Card.Header css={{ display: 'flex', justifyContent: "space-between" }}>
               <Text h1 transform="capitalize">{pokemon.name}</Text>
               <Button onPress={onToogleFavorite}  ghost={!isInFavorites} color="gradient">
-                Guardar en favoritos
+                {isInFavorites? "En favoritos" : "Guardar en favoritos"}
               </Button>
             </Card.Header>
             <Card.Body>              
@@ -93,11 +103,13 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { id } = params as { id: string };
-  const { data } = await pokeAPi.get<Pokemon>(`/pokemon/${id}`);
+
+   const { id } = params as { id: string };
+   const pokemon=await PokemonInfo.get(id);;
+  
   return {
     props: {
-      pokemon: data
+      pokemon
     }
   }
 }

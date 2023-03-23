@@ -1,3 +1,5 @@
+import { pokeAPi } from "../api";
+
 const toogleFavorites=(id:number):void=>{    
     let favorites:number[]= JSON.parse(localStorage.getItem("favorites") || "[]");
     if (favorites.includes(id)){
@@ -19,8 +21,12 @@ const pokemons =():number[]=>{
 }
 
 
+
+
+
 export default {
     toogleFavorites,
     isPokemonFavorite,
-    pokemons
+    pokemons,
+    
 }

@@ -9,10 +9,8 @@ export const FavoritePokemon:FC<Props> = ({ pokemons }) => {
     return (
         <Grid.Container gap={2} direction='row' justify='flex-start'>
             {
-                pokemons.map(id => (
-                    <Grid xs={6} sm={3} md={2} xl={1} key={id}>
-                        <FavoriteCardPokemon key={id} idPokemon={id}></FavoriteCardPokemon>
-                    </Grid>
+                pokemons.map(id => (              
+                        <FavoriteCardPokemon key={id} idPokemon={id}></FavoriteCardPokemon>              
                 ))
             }
         </Grid.Container>
