@@ -19,7 +19,6 @@ export const Layout: FC<Props> = ({ children, title = 'Pokemon app' }) => {
                 <meta name="author" content="Tonovarela"></meta>
                 <meta name="description" content="Info del pokemon"></meta>
                 <meta name="keywords" content={`${title}, pokemon,pokedex`}></meta>
-
                 <meta property="og:title" content={`Informacion sobre el pokemon ${title}`} />
                 <meta property="og:description" content={`Esta es la pagina sobre ${title}`} />
                 <meta property="og:image" content={`${origin}/imgs/banner.png`} />
