@@ -2,13 +2,10 @@ import Head from "next/head"
 import { FC } from "react"
 import { Navbar } from "../ui";
 
-
 interface Props {
     title?: string;
     children: JSX.Element
 }
-
-
 
 export const Layout: FC<Props> = ({ children, title = 'Pokemon app' }) => {
     const origin = (typeof window!== 'undefined')? window.location.origin : '';        
